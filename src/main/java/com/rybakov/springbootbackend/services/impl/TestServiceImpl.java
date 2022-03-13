@@ -6,16 +6,20 @@ import com.rybakov.springbootbackend.payload.test.QuestionPayload;
 import com.rybakov.springbootbackend.payload.test.TestPayload;
 import com.rybakov.springbootbackend.repository.TestRepository;
 import com.rybakov.springbootbackend.services.TestService;
-import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Access;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
+
 @Service
-public class TestServicesImpl implements TestService {
+public class TestServiceImpl implements TestService {
+
+    public TestServiceImpl(TestRepository testRepository) {
+        this.testRepository = testRepository;
+    }
 
     private final TestRepository testRepository;
     @Override
@@ -32,5 +36,17 @@ public class TestServicesImpl implements TestService {
         }
         testToSave.setQuestions(questions);
         testRepository.save(testToSave);
+    }
+
+
+    @Override
+    public List<Test> getAllTests() {
+        return testRepository.findAll();
+    }
+
+    @Override
+    public Test getTestById(int id) {
+
+        return testRepository.findById((long) id).get();
     }
 }

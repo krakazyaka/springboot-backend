@@ -1,15 +1,35 @@
 package com.rybakov.springbootbackend.payload.test;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class TestPayload {
+    public String getText() {
+        return text;
+    }
+
+    public TestPayload(String text, List<QuestionPayload> questionPayloadList) {
+        this.text = text;
+        this.questionPayloadList = questionPayloadList;
+    }
+
+    public TestPayload() {
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public List<QuestionPayload> getQuestionPayloadList() {
+        return questionPayloadList;
+    }
+
+    public void setQuestionPayloadList(List<QuestionPayload> questionPayloadList) {
+        this.questionPayloadList = questionPayloadList;
+    }
+
     private String text;
 
     private List<QuestionPayload> questionPayloadList;
