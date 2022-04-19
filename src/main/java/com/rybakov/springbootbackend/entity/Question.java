@@ -17,6 +17,16 @@ public class Question extends BaseEntity{
 
     private String text;
 
+    private String imgUrl;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     public Question() {
     }
 
@@ -44,9 +54,10 @@ public class Question extends BaseEntity{
         this.countVotes = countVotes;
     }
 
-    public Question(Test test, String text, int countVotes) {
+    public Question(Test test, String text, String imgUrl, int countVotes) {
         this.test = test;
         this.text = text;
+        this.imgUrl = imgUrl;
         this.countVotes = countVotes;
     }
 

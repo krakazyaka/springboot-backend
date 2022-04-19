@@ -3,6 +3,7 @@ package com.rybakov.springbootbackend.services;
 
 import com.rybakov.springbootbackend.entity.Test;
 import com.rybakov.springbootbackend.payload.test.TestPayload;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

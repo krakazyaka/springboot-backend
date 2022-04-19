@@ -2,6 +2,8 @@ package com.rybakov.springbootbackend.payload.test;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -31,6 +33,16 @@ public class TestPayload {
     }
 
     private String text;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
 
     private List<QuestionPayload> questionPayloadList;
 }

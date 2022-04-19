@@ -8,8 +8,6 @@ import com.rybakov.springbootbackend.repository.TestRepository;
 import com.rybakov.springbootbackend.services.TestService;
 
 import org.springframework.stereotype.Service;
-
-import javax.persistence.Access;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +25,19 @@ public class TestServiceImpl implements TestService {
         Test testToSave = new Test();
         List<Question> questions= new ArrayList<>();
         testToSave.setName(testPayload.getText());
+
         for (QuestionPayload questionPayload : testPayload.getQuestionPayloadList()) {
             Question question = new Question();
+            String fileName = questionPayload.getImgUrl();
+
+            question.setImgUrl(fileName);
             question.setTest(testToSave);
             question.setText(questionPayload.getText());
-            questions.add(question);
 
+            questions.add(question);
         }
         testToSave.setQuestions(questions);
+        testToSave.setDescription(testPayload.getDescription());
         testRepository.save(testToSave);
     }
 

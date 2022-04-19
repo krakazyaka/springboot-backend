@@ -18,8 +18,8 @@ public class QuestionServiceImpl implements Questionervice {
 
     private final QuestionRepository questionRepository;
     @Override
-    public void increaseVote(int id) {
-        Question q = questionRepository.getById(id).orElseThrow(() -> new NoSuchElementException());
+    public void increaseVote(long id) {
+        Question q = questionRepository.getById(id);
         q.setCountVotes(q.getCountVotes()+1);
         questionRepository.save(q);
     }

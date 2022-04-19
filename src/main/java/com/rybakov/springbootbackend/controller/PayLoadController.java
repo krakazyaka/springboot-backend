@@ -10,11 +10,14 @@ import com.rybakov.springbootbackend.payload.test.TestPayload;
 import com.rybakov.springbootbackend.services.Questionervice;
 import com.rybakov.springbootbackend.services.TestService;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*",  maxAge = 3600)
 @RestController
 @RequestMapping("/payload")
 public class PayLoadController {
@@ -28,15 +31,8 @@ public class PayLoadController {
     private final Questionervice questionervice;
     private final TestMapper testMapper;
 
-    @PostMapping("/test")
+    @PostMapping(path = "/test")
     public String receiveTestPayload(@RequestBody TestPayload testPayload){
-
-        System.out.println(testPayload.getText());
-        System.out.println(testPayload.getQuestionPayloadList().size());
-
-        for (QuestionPayload questionPayload : testPayload.getQuestionPayloadList()) {
-            System.out.println(questionPayload.getText());
-        }
         testServices.saveTest(testPayload);
         return "123";
     }
@@ -54,6 +50,7 @@ public class PayLoadController {
 
     @GetMapping("/allTests")
     public List<Test> getAllTests(){
+        System.out.println("popytka connecta");
         return testServices.getAllTests();
     }
 
@@ -63,7 +60,7 @@ public class PayLoadController {
     }
 
     @PostMapping("/answer")
-    public void IncreaseVote(@RequestParam int id){
+    public void IncreaseVote(@Valid @RequestParam long id){
 
         questionervice.increaseVote(id);
 
